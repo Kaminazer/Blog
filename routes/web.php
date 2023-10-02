@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', IndexController::class)->name('posts.index');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', AdminIndexController::class)->name('admin.index');
 });
+Auth::routes();
