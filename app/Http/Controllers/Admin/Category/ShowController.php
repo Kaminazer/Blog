@@ -8,12 +8,10 @@ use App\Models\Post;
 use Illuminate\Contracts\View\View;
 
 
-class IndexController extends Controller
+class ShowController extends Controller
 {
     public function __invoke(Category $category): View
     {
-        return view('admin.category.index', [
-            'categories' => $category::all(),
-        ]);
+        return view('admin.category.show', compact('category'));
     }
 }
