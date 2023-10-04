@@ -20,6 +20,8 @@ class PostFactory extends Factory
         return [
             'title' => fake()->unique()->sentence('1'),
             'content' => fake()->sentence(),
+            'preview_image' => fake()->image(),
+            'main_image' => fake()->image(),
             'category_id' => Category::get()->random()->id,
         ];
     }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 
-
 class EditController extends Controller
 {
     public function __invoke(Category $category): View

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin\Tag;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Tag\StoreRequest;
-use App\Models\Category;
+use App\Http\Requests\Post\StoreRequest;
 use App\Models\Tag;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-
 
 class StoreController extends Controller
 {

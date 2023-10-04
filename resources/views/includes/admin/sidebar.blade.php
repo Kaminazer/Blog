@@ -36,12 +36,11 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-header">ADMIN PANEL</li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{route('post.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-align-justify"></i>
                         <p>
                             {{__('Posts')}}
-                            {{--<span class="badge badge-info right">{{$posts->total()}}</span>--}}
-                            <span class="badge badge-info right">{{111}}</span>
+                            <span class="badge badge-info right">{{$posts->count()}}</span>
                         </p>
                     </a>
                 </li>
