@@ -50,18 +50,16 @@
                         <i class="nav-icon fas fa-align-justify"></i>
                         <p>
                             {{__('Categories')}}
-                            {{--<span class="badge badge-info right">{{$posts->total()}}</span>--}}
-                            <span class="badge badge-info right">{{111}}</span>
+                            <span class="badge badge-info right">{{$categories->count()}}</span>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{route('tag.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-align-justify"></i>
                         <p>
                             {{__('Tags')}}
-                            {{--<span class="badge badge-info right">{{$posts->total()}}</span>--}}
-                            <span class="badge badge-info right">{{111}}</span>
+                            <span class="badge badge-info right">{{$tags->count()}}</span>
                         </p>
                     </a>
                 </li>

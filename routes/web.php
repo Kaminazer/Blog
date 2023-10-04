@@ -1,12 +1,8 @@
 <?php
-use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 
 use App\Http\Controllers\Main\IndexController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-use App\Http\Controllers\Main;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,17 +26,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'],
         Route::get('{category}', 'ShowController')->name('show');
         Route::get('{category}/edit', 'EditController')->name('edit');
         Route::patch('{category}', 'UpdateController')->name('update');
+        Route::delete('{category}', 'DestroyController')->name('destroy');
+
     });
 
-/*    Route::group(['prefix' => 'tag', 'namespace' => 'Tag', 'as' => 'tag.'], function () {
+        Route::group(['prefix' => 'tag', 'namespace' => 'Tag', 'as' => 'tag.'], function () {
         Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
         Route::post('store', 'StoreController')->name('store');
-        Route::get('{category}', 'ShowController')->name('show');
-        Route::get('{category}/edit', 'EditController')->name('edit');
-        Route::patch('{category}', 'UpdateController')->name('update');
+        Route::get('{tag}', 'ShowController')->name('show');
+        Route::get('{tag}/edit', 'EditController')->name('edit');
+        Route::patch('{tag}', 'UpdateController')->name('update');
+        Route::delete('{tag}', 'DestroyController')->name('destroy');
      });
-
+/*
     Route::group(['prefix' => 'post', 'namespace' => 'Post', 'as' => 'post.'], function () {
         Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
