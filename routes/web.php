@@ -50,5 +50,3 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'],
         Route::delete('{post}', 'DestroyController')->name('destroy');
     });
 });
-
-

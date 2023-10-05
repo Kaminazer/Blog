@@ -37,13 +37,29 @@
 
                 <div class="form-group">
                     <label for="category_id">{{__("Category")}}</label>
-                    <select class="form-control select2 select2-hidden-accessible col-4"  name = "category_id"  id="category_id"  data-select2-id="1" tabindex="-1" aria-hidden="true">
-                        <option value="" selected disabled>{{__("Select category")}}</option>
-                        @foreach($categories as $category)
-                            <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->title}}</option>
-                        @endforeach
-                    </select>
+                    <div>
+                        <select class="select2"  style="width: 30%;" name = "category_id"  id="category_id"  data-select2-id="category_id" tabindex="-1" aria-hidden="true">
+                            <option value="" selected disabled>{{__("Select category")}}</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @error('category_id')
+                    <div class="text-danger pb-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group" >
+                    <label for="tags_id">{{__("Tags")}}</label>
+                    <div>
+                        <select class="select2" multiple="" id="tags_id"  name = "tags_id[]" data-select2-id="tags_id" style="width: 30%;" >
+                            @foreach($tags as $tag)
+                                <option {{is_array(old('tags_id')) && in_array($tag->id, old('tags_id')) ? 'selected' : ''}} value="{{$tag->id}}">{{$tag->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('tags_id')
                     <div class="text-danger pb-2">{{ $message }}</div>
                     @enderror
                 </div>
