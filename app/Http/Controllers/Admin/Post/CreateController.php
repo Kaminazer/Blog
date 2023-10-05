@@ -8,7 +8,7 @@ use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke(Category $category,Tag $tag): View
     {

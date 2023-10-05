@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 
-class ShowController extends Controller
+class ShowController extends BaseController
 {
     public function __invoke(Post $post): View
     {
