@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -22,13 +23,13 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255|unique:tags,title',
-            'content' => 'required|string',
-            'preview_image' => 'required|mimes:jpg,bmp,png,jpeg,webp,svg|max:2048',
-            'main_image' => 'required|mimes:jpg,bmp,png,jpeg,webp,svg|max:2048',
-            'category_id' => 'required|integer|exists:categories,id',
-            'tags_id' => 'nullable|array',
-            'tags_id.*' => 'nullable|integer|exists:tags,id',
+            'title' => ['required', 'string', 'max:255', Rule::unique('posts','title')->ignore($this->post)],
+            'content' => ['required', 'string'],
+            'preview_image' => ['required', 'mimes:jpg,bmp,png,jpeg,webp,svg', 'max:1024'],
+            'main_image' => ['required', 'mimes:jpg,bmp,png,jpeg,webp,svg', 'max:1024'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'tags_id' => ['nullable', 'array'],
+            'tags_id.*' => ['nullable', 'integer', 'exists:tags,id'],
         ];
     }
 }

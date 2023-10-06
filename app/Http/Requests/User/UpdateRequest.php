@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Tag;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -22,7 +23,9 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255', 'unique:tags,title'],
+            'name' => ['required', 'string', 'max:255', Rule::unique('users','name')->ignore($this->user)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->user)],
+            'role' => ['required', 'integer'],
         ];
     }
 }

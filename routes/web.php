@@ -57,10 +57,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'],
         Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
         Route::post('store', 'StoreController')->name('store');
-        Route::get('{tag}', 'ShowController')->name('show');
-        Route::get('{tag}/edit', 'EditController')->name('edit');
-        Route::patch('{tag}', 'UpdateController')->name('update');
-        Route::delete('{tag}', 'DestroyController')->name('destroy');
+        Route::get('{user}', 'ShowController')->name('show');
+        Route::get('{user}/edit', 'EditController')->name('edit');
+        Route::patch('{user}', 'UpdateController')->name('update');
+        Route::delete('{user}', 'DestroyController')->name('destroy');
     });
 });
 

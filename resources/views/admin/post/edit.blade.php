@@ -96,7 +96,6 @@
                     <div class="text-danger pb-2">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="form group">
                     <button type="submit" class="btn btn-primary">{{__('Update')}}</button>
                 </div>
