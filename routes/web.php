@@ -4,7 +4,6 @@ use App\Http\Controllers\Main\IndexController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +20,7 @@ Route::get('/welcome', function () {
 
 Route::get('/', IndexController::class)->name('posts.index');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'verified','admin']], function () {
     Route::get('/', 'Main\IndexController')->name('admin.index');
 
     Route::group(['prefix' => 'category', 'namespace' => 'Category', 'as' => 'category.'], function () {
@@ -64,6 +63,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'],
     });
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
