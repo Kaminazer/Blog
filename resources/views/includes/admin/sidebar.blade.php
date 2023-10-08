@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="Blog" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{route('admin.index')}}" class="brand-link">
+        <i class="fas fa-blog pr-2 pl-3"></i>
         <span class="brand-text font-weight-light">{{__('Blog')}}</span>
     </a>
 
@@ -41,10 +41,18 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-header">ADMIN PANEL</li>
+                <li class="nav-header">{{__("ADMIN PANEL")}}</li>
+                <li class="nav-item">
+                    <a href="{{route('admin.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            {{__('Dashboard')}}
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('user.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-align-justify"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             {{__('Users')}}
                             <span class="badge badge-info right">{{$users->count()}}</span>
@@ -53,7 +61,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('post.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-align-justify"></i>
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             {{__('Posts')}}
                             <span class="badge badge-info right">{{$posts->count()}}</span>
@@ -62,7 +70,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('category.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-align-justify"></i>
+                        <i class="nav-icon fas fa-list"></i>
                         <p>
                             {{__('Categories')}}
                             <span class="badge badge-info right">{{$categories->count()}}</span>
@@ -71,7 +79,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('tag.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-align-justify"></i>
+                        <i class="nav-icon fas fa-tags"></i>
                         <p>
                             {{__('Tags')}}
                             <span class="badge badge-info right">{{$tags->count()}}</span>
