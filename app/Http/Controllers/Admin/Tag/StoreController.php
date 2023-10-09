@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Tag;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Admin\Category\StoreRequest;
 use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 

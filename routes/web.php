@@ -20,6 +20,22 @@ Route::get('/welcome', function () {
 
 Route::get('/', IndexController::class)->name('posts.index');
 
+Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profile', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/', 'Main\IndexController')->name('profile.index');
+
+    Route::group(['prefix' => 'liked', 'namespace' => 'Liked', 'as' => 'liked.'], function () {
+        Route::get('/', 'IndexController')->name('index');
+        Route::delete('{post}', 'DestroyController')->name('destroy');
+    });
+
+    Route::group(['prefix' => 'comments', 'namespace' => 'Comment', 'as' => 'comment.'], function () {
+        Route::get('/', 'IndexController')->name('index');
+        Route::get('{comment}', 'EditController')->name('edit');
+        Route::patch('{comment}', 'UpdateController')->name('update');
+        Route::delete('{comment}', 'DestroyController')->name('destroy');
+    });
+});
+
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'verified','admin']], function () {
     Route::get('/', 'Main\IndexController')->name('admin.index');
 

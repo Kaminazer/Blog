@@ -26,11 +26,17 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('layouts.admin', function ($view) {
             $view->with([
-                'categories' => Category::all(),
-                'tags' => Tag::all(),
-                'posts' => Post::all(),
-                'users' => User::all(),
+                'categoriesCount' => Category::count(),
+                'tagsCount' => Tag::count(),
+                'postsCount' => Post::count(),
+                'usersCount' => User::count(),
                 ]);
+        });
+        View::composer('layouts.profile', function ($view) {
+            $view->with([
+                'likedPostsCount' => auth()->user()->likedPosts()->count(),
+                'commentsCount' => auth()->user()->comments()->count()
+            ]);
         });
     }
 }

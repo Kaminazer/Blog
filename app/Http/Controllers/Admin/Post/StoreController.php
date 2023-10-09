@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
-use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Service\PostService;
 use Illuminate\Http\RedirectResponse;
 

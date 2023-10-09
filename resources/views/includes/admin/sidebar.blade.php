@@ -55,7 +55,7 @@
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             {{__('Users')}}
-                            <span class="badge badge-info right">{{$users->count()}}</span>
+                            <span class="badge badge-info right">{{$usersCount}}</span>
                         </p>
                     </a>
                 </li>
@@ -64,7 +64,7 @@
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             {{__('Posts')}}
-                            <span class="badge badge-info right">{{$posts->count()}}</span>
+                            <span class="badge badge-info right">{{$postsCount}}</span>
                         </p>
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             {{__('Categories')}}
-                            <span class="badge badge-info right">{{$categories->count()}}</span>
+                            <span class="badge badge-info right">{{$categoriesCount}}</span>
                         </p>
                     </a>
                 </li>
@@ -82,7 +82,7 @@
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             {{__('Tags')}}
-                            <span class="badge badge-info right">{{$tags->count()}}</span>
+                            <span class="badge badge-info right">{{$tagsCount}}</span>
                         </p>
                     </a>
                 </li>
