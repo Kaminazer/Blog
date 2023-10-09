@@ -18,7 +18,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/', IndexController::class)->name('posts.index');
+Route::get('/', IndexController::class)->name('main.index');
 
 Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profile', 'middleware' => ['auth', 'verified']], function () {
     Route::get('/', 'Main\IndexController')->name('profile.index');

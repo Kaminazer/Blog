@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -38,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
                 'commentsCount' => auth()->user()->comments()->count()
             ]);
         });
+        Paginator::useBootstrap();
     }
 }
