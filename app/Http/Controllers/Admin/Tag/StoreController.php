@@ -13,6 +13,6 @@ class StoreController extends Controller
     {
         $data = $request->validated();
         Tag::create($data);
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 }

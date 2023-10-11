@@ -48,7 +48,7 @@
                                             <a href="{{route('post.show', $post->id)}}">{{$post->title}}</a>
                                         </td>
                                         <td>
-                                            <form action="{{route('liked.destroy', $post->id)}}" method="post">
+                                            <form action="{{route('profile.liked.destroy', $post->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="border-0 bg-white">

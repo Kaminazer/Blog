@@ -12,7 +12,7 @@
                             <a href="{{route('admin.index')}}">{{__('Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item ">
-                            <a href="{{route('post.index')}}">{{__('Posts')}}</a>
+                            <a href="{{route('admin.post.index')}}">{{__('Posts')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__("Edit post")}}</li>
                     </ol>
@@ -23,9 +23,19 @@
     <!-- /.content-header -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('post.update', $post->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.post.update', $post->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
+
+                <div class="form group">
+                    <div class="mb-2">
+                        <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                    </div>
+                    @error('user_id')
+                    <div class="text-danger pb-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="form group">
                     <div class="mb-2">
                         <label for="title">{{__('Title')}}</label>

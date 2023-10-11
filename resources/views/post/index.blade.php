@@ -8,10 +8,10 @@
                     @foreach($posts as $post)
                         <div class="col-md-4 fetured-post blog-post" data-aos="fade-up">
                             <div class="blog-post-thumbnail-wrapper">
-                                <img src="{{'storage/'. $post->preview_image}}" alt="blog post">
+                                <img src="{{asset('storage/'. $post->preview_image)}}" alt="blog post">
                             </div>
                             <p class="blog-post-category">{{$post->category->title}}</p>
-                            <a href="#" class="blog-post-permalink">
+                            <a href="{{route("post.show", $post->id)}}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{{$post->title}}</h6>
                             </a>
                         </div>
@@ -27,7 +27,7 @@
                                     <div class="blog-post-thumbnail-wrapper">
                                         <img src="{{'storage/'. $post->preview_image}}" alt="blog post">
                                     </div>
-                                    <p class="blog-post-category">{{$post->category->title}}</p>
+   {{--                                 <p class="blog-post-category">{{$post->category->title}}</p>--}}
                                     <a href="#" class="blog-post-permalink">
                                         <h6 class="blog-post-title">{{$post->title}}</h6>
                                     </a>
@@ -50,7 +50,7 @@
                                     <a href="#!" class="post-permalink media">
                                         <img src="{{'storage/'. $post->preview_image}}" alt="blog post">
                                         <div class="media-body">
-                                            <h6 class="post-title">{{$post->title}}</h6>
+                                            {{--<h6 class="post-title">{{$post->title}}</h6>--}}
                                         </div>
                                     </a>
                                 </li>

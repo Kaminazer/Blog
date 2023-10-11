@@ -62,7 +62,7 @@
                 @endif
 
                 <li class="nav-item">
-                    <a href="{{route('liked.index')}}" class="nav-link">
+                    <a href="{{route('profile.liked.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-thumbs-up"></i>
                         <p>
                             {{__('Liked Posts')}}
@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('comment.index')}}" class="nav-link">
+                    <a href="{{route('profile.comment.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>
                             {{__('Comments')}}

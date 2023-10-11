@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Main\IndexController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/', \App\Http\Controllers\Main\IndexController::class)->name('main.index');
+
+Route::group(['prefix' => 'posts', 'namespace' => 'App\Http\Controllers\Post'], function () {
+    Route::get('/', 'IndexController')->name('post.index');
+    Route::get('{post}', 'ShowController')->name('post.show');
 });
 
-Route::get('/', IndexController::class)->name('main.index');
-
-Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profile', 'middleware' => ['auth', 'verified']], function () {
-    Route::get('/', 'Main\IndexController')->name('profile.index');
+Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profile', 'middleware' => ['auth', 'verified'], 'as' => 'profile.'], function () {
+    Route::get('/', 'Main\IndexController')->name('index');
 
     Route::group(['prefix' => 'liked', 'namespace' => 'Liked', 'as' => 'liked.'], function () {
         Route::get('/', 'IndexController')->name('index');
@@ -30,14 +30,15 @@ Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profil
 
     Route::group(['prefix' => 'comments', 'namespace' => 'Comment', 'as' => 'comment.'], function () {
         Route::get('/', 'IndexController')->name('index');
+        Route::post('store', 'StoreController')->name('store');
         Route::get('{comment}', 'EditController')->name('edit');
         Route::patch('{comment}', 'UpdateController')->name('update');
         Route::delete('{comment}', 'DestroyController')->name('destroy');
     });
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'verified','admin']], function () {
-    Route::get('/', 'Main\IndexController')->name('admin.index');
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'verified','admin'], 'as' => 'admin.'], function () {
+    Route::get('/', 'Main\IndexController')->name('index');
 
     Route::group(['prefix' => 'category', 'namespace' => 'Category', 'as' => 'category.'], function () {
         Route::get('/', 'IndexController')->name('index');

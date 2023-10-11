@@ -12,7 +12,7 @@
                             <a href="{{route('admin.index')}}">{{__('Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item ">
-                            <a href="{{route('category.index')}}">{{__('Categories')}}</a>
+                            <a href="{{route('admin.category.index')}}">{{__('Categories')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__("Create category")}}</li>
                     </ol>
@@ -23,7 +23,7 @@
     <!-- /.content-header -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('category.store')}}" method="post">
+            <form action="{{route('admin.category.store')}}" method="post">
                 @csrf
                 <div class="mb-2">
                     <label for="title">{{__('Title')}}</label>

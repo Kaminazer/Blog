@@ -13,6 +13,6 @@ class StoreController extends Controller
     {
         $data = $request->validated();
         StoreUserJob::dispatch($data);
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
     }
 }

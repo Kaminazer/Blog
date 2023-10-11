@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('user.index')}}" class="nav-link">
+                    <a href="{{route('admin.user.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             {{__('Users')}}
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('post.index')}}" class="nav-link">
+                    <a href="{{route('admin.post.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             {{__('Posts')}}
@@ -69,7 +69,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('category.index')}}" class="nav-link">
+                    <a href="{{route('admin.category.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             {{__('Categories')}}
@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('tag.index')}}" class="nav-link">
+                    <a href="{{route('admin.tag.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             {{__('Tags')}}

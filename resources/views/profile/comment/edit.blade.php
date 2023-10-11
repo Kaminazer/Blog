@@ -12,7 +12,7 @@
                             <a href="{{route('profile.index')}}">{{__('Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item ">
-                            <a href="{{route('comment.index')}}">{{__('Comments')}}</a>
+                            <a href="{{route('profile.comment.index')}}">{{__('Comments')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__("Edit comment")}}</li>
                     </ol>
@@ -23,7 +23,7 @@
     <!-- /.content-header -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('comment.update', $comment->id)}}" method="post">
+            <form action="{{route('profile.comment.update', $comment->id)}}" method="post">
                 @csrf
                 @method('patch')
                 <div class="mb-2">

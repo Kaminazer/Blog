@@ -12,6 +12,6 @@ class UpdateController extends BaseController
     {
         $data = $request->validated();
         $this->service->update($data, $post);
-        return redirect()->route('post.show', $post->id);
+        return redirect()->route('admin.post.show', $post->id);
     }
 }

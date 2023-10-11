@@ -11,6 +11,6 @@ class DestroyController extends Controller
     public function __invoke(Tag $tag): RedirectResponse
     {
         $tag->delete();
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 }
