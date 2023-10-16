@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Profile\Comment;
 
 use Illuminate\Foundation\Http\FormRequest;
+use function Symfony\Component\String\u;
 
 class StoreRequest extends FormRequest
 {
@@ -22,6 +23,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'post_id' => ['required', 'integer', 'exists:posts,id'],
             'message' => ['required', 'string'],
         ];
     }

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profil
 
     Route::group(['prefix' => 'liked', 'namespace' => 'Liked', 'as' => 'liked.'], function () {
         Route::get('/', 'IndexController')->name('index');
+        Route::post('{post}', 'StoreController')->name('store');
         Route::delete('{post}', 'DestroyController')->name('destroy');
     });
 
@@ -80,6 +81,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
     });
 });
 
+Route::group(['prefix' => 'categories', 'namespace' => 'App\Http\Controllers\Category'], function (){
+    Route::get('/', 'IndexController')->name("categories.index");
+    Route::get('{category}/posts', 'Post\IndexController')->name("categories.posts.index");
+});
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');

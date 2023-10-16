@@ -13,6 +13,6 @@ class StoreController extends Controller
     {
         $data = $request->validated();
         Comment::create($data);
-        return redirect()->route('comment.index');
+        return redirect()->route('post.show', $data['post_id'])->with('success', 'Comment add successfully');
     }
 }

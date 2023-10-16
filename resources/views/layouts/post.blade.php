@@ -17,19 +17,26 @@
         <header class="edica-header">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="{{__(route("post.index"))}}"><img src="{{asset('assets/images/logo.svg')}}" alt="Edica"></a>
+                    <a class="navbar-brand" href="{{route("post.index")}}"><img src="{{asset('assets/images/logo.svg')}}" alt="Edica"></a>
                     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="edicaMainNav">
                         <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{__(route("post.index"))}}">{{__("Home")}} <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{route("post.index")}}">{{__("Home")}} <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{__(route("profile.index"))}}"  aria-haspopup="true" aria-expanded="false">{{__("Blog")}}</a>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{route("categories.index")}}">{{__("Categories")}} <span class="sr-only">(current)</span></a>
                             </li>
+
+                            @auth()
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route("profile.index")}}"  aria-haspopup="true" aria-expanded="false">{{__("Profile")}}</a>
+                                </li>
+                            @endauth
                         </ul>
+                        @guest()
                         <ul class="navbar-nav mt-2 mt-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route("login")}}">{{__("Login")}}</a>
@@ -38,6 +45,7 @@
                                 <a class="nav-link" href="{{route("register")}}">{{__("Register")}}</a>
                             </li>
                         </ul>
+                        @endguest
                     </div>
                 </nav>
             </div>
