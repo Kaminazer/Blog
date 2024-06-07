@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable /*implements MustVerifyEmail*/
 {
     use HasApiTokens, HasFactory, Notifiable, softDeletes;
     const ROLE_ADMIN = 0;
@@ -51,10 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function sendEmailVerificationNotification()
+/*    public function sendEmailVerificationNotification()
     {
         $this->notify(new \App\Notifications\SenderVerifyWithQueueNotification());
-    }
+    }*/
 
     public function likedPosts()
     {

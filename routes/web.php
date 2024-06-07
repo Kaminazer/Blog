@@ -20,7 +20,7 @@ Route::group(['prefix' => 'posts', 'namespace' => 'App\Http\Controllers\Post'], 
     Route::get('{post}', 'ShowController')->name('post.show');
 });
 
-Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profile', 'middleware' => ['auth', 'verified'], 'as' => 'profile.'], function () {
+Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profile', 'middleware' => ['auth', /*'verified'*/], 'as' => 'profile.'], function () {
     Route::get('/', 'Main\IndexController')->name('index');
 
     Route::group(['prefix' => 'liked', 'namespace' => 'Liked', 'as' => 'liked.'], function () {
@@ -38,7 +38,7 @@ Route::group(['prefix' => 'profile', 'namespace' => 'App\Http\Controllers\Profil
     });
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'verified','admin'], 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', /*'verified',*/'admin'], 'as' => 'admin.'], function () {
     Route::get('/', 'Main\IndexController')->name('index');
 
     Route::group(['prefix' => 'category', 'namespace' => 'Category', 'as' => 'category.'], function () {
@@ -85,6 +85,6 @@ Route::group(['prefix' => 'categories', 'namespace' => 'App\Http\Controllers\Cat
     Route::get('/', 'IndexController')->name("categories.index");
     Route::get('{category}/posts', 'Post\IndexController')->name("categories.posts.index");
 });
-Auth::routes(['verify' => true]);
+Auth::routes(/*['verify' => true]*/);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
