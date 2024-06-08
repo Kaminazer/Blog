@@ -3,16 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 Route::get('/', \App\Http\Controllers\Main\IndexController::class)->name('main.index');
 
 Route::group(['prefix' => 'posts', 'namespace' => 'App\Http\Controllers\Post'], function () {
@@ -50,7 +40,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
         Route::patch('{category}', 'UpdateController')->name('update');
         Route::delete('{category}', 'DestroyController')->name('destroy');
     });
-        Route::group(['prefix' => 'tag', 'namespace' => 'Tag', 'as' => 'tag.'], function () {
+    Route::group(['prefix' => 'tag', 'namespace' => 'Tag', 'as' => 'tag.'], function () {
         Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
         Route::post('store', 'StoreController')->name('store');
@@ -68,6 +58,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
         Route::get('{post}/edit', 'EditController')->name('edit');
         Route::patch('{post}', 'UpdateController')->name('update');
         Route::delete('{post}', 'DestroyController')->name('destroy');
+    });
+
+    Route::group(['prefix' => 'new', 'namespace' => 'News', 'as' => 'new.'], function () {
+        Route::get('/', 'IndexController')->name('index');
+        Route::get('create', 'CreateController')->name('create');
+        Route::post('store', 'StoreController')->name('store');
+        Route::get('{new}', 'ShowController')->name('show');
+        Route::get('{new}/edit', 'EditController')->name('edit');
+        Route::patch('{new}', 'UpdateController')->name('update');
+        Route::delete('{new}', 'DestroyController')->name('destroy');
     });
 
     Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], function () {

@@ -181,6 +181,7 @@
         <!-- Main Sidebar Container -->
         @include('includes.admin.sidebar')
         <!-- /.sidebar -->
+        @include('sweetalert::alert')
 
         <div class="content-wrapper">
             @yield('content')
@@ -240,7 +241,9 @@
             text: 'Select tags',
         }
     });
+
 </script>
+
 </body>
 </html>
 
