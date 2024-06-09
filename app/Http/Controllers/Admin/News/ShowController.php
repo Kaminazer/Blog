@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin\News;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 
 class ShowController extends Controller
 {
-    public function __invoke()
+    public function __invoke(News $new)
     {
-        // TODO: Implement __invoke() method.
-        return view('admin.new.show');
+        return view('admin.new.show', [
+            'itemNews' => $new,
+        ]);
     }
 }

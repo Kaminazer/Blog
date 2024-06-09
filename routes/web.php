@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', \App\Http\Controllers\Main\IndexController::class)->name('main.index');
+Route::get('/', \App\Http\Controllers\Admin\News\IndexController::class)->name('main.index');
 
 Route::group(['prefix' => 'posts', 'namespace' => 'App\Http\Controllers\Post'], function () {
     Route::get('/', 'IndexController')->name('post.index');
@@ -85,6 +85,6 @@ Route::group(['prefix' => 'categories', 'namespace' => 'App\Http\Controllers\Cat
     Route::get('/', 'IndexController')->name("categories.index");
     Route::get('{category}/posts', 'Post\IndexController')->name("categories.posts.index");
 });
-Auth::routes(/*['verify' => true]*/);
+Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+

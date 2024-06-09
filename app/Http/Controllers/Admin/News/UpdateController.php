@@ -6,14 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\News\UpdateRequest;
 use App\Models\News;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
-    public function __invoke(News $news, UpdateRequest $request):RedirectResponse
+    public function __invoke(News $new, UpdateRequest $request):RedirectResponse
     {
         $validatedData = $request->validated();
-        $news->update($validatedData);
-        return redirect()->route('admin.news.index');
+        $validateTag = $validatedData['tags'];
+        unset($validatedData['tags']);
+        $validatedData['image'] = Storage::disk('public')->put('/images', $validatedData['image']);
+
+        $previousTags = $new->tags->toArray();
+
+        $result = $new->update($validatedData);
+        return redirect()->route('admin.new.index');
     }
 }

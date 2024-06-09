@@ -9,8 +9,10 @@ use Illuminate\Contracts\View\View;
 
 class EditController extends Controller
 {
-    public function __invoke(News $news):View
+    public function __invoke(News $new):View
     {
-        return view('admin.new.edit', compact($news));
+        return view('admin.new.edit', [
+            'itemNews' => $new,
+        ]);
     }
 }

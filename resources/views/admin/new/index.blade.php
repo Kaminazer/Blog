@@ -1,26 +1,38 @@
-@extends('layouts.admin')
+@extends('layouts.post')
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{__('News')}}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item ">
-                            <a href="{{route('admin.index')}}">{{__('Dashboard')}}</a>
-                        </li>
-                        <li class="breadcrumb-item active">{{__("Posts")}}</li>
-                    </ol>
+    <main class="blog">
+        <div class="container">
+            <h1 class="edica-page-title" data-aos="fade-up">{{__("News")}}</h1>
+            <section class="featured-posts-section">
+                <div class="row">
+                    <div class=" mr-2 row col-md-12">
+                        @foreach($news as $itemNews)
+                            <div class="col-md-4 fetured-post blog-post" data-aos="fade-up">
+                                <div class="blog-post-thumbnail-wrapper">
+                                    <img src="{{asset('storage/'. $itemNews->image)}}" alt="image news">
+                                </div>
+                                <a href="{{route("admin.new.show", $itemNews->id)}}" class="blog-post-permalink">
+                                    <h6 class="blog-post-title">{{$itemNews->title}}</h6>
+                                </a>
+                                 <p>{{$itemNews->created_at->format('d M Y')}}</p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-    <section class="content">
-        <div class="container-fluid">
-
+            </section>
+            <div class="row">
+                <div class="">
+                    <section>
+                        <div class="row blog-post-row">
+                            <div class="row">
+                                <div class="mx-auto" style="margin-top: -80px">
+                                    {{$news->links()}}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
-    </section>
+    </main>
 @endsection
