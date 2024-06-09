@@ -17,6 +17,6 @@ class News extends Model
 
     public function tags():HasMany
     {
-        return $this->hasMany('tags_news');
+        return $this->hasMany(TagsNews::class);
     }
 }

@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\News\StoreRequest;
 use App\Models\News;
 use App\Models\TagsNews;
+use App\Service\TagService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
-    public function __invoke(StoreRequest $request):RedirectResponse
+    public function __invoke(StoreRequest $request, TagService $service):RedirectResponse
     {
         $validatedData = $request->validated();
         $validatedTags = $validatedData['tags'];
@@ -27,7 +28,9 @@ class StoreController extends Controller
             }
         }
         if (empty($existingTags)){
-            $this->addLinks($convertedTags);
+            $service->addLinks($convertedTags);
+            $modifiedContent = $service->checkContent($validatedData['content']);
+            $validatedData['content'] = $modifiedContent;
             $new = News::create($validatedData);
             TagsNews::create([
                 'title'=> $tag,
@@ -37,19 +40,4 @@ class StoreController extends Controller
         }
         return back()->withErrors(['tags'=>"Don't use these tags, they are exist in other news: ".implode(", ", $existingTags)]);
     }
-     private function addLinks(array $tags){
-        $allNews = News::all('id', 'content')->flatten(1);
-         foreach ($tags as $tag) {
-             $foundedNews = $allNews->filter( function ($news) use ($tag) {
-                 return preg_match("/\b$tag\b/iu",$news->content);
-             });
-             foreach ($foundedNews as $itemNews) {
-                 $urlForTag = route('admin.new.show', ["new" => $itemNews->id]);
-                 $linkForTag = "<a href = '$urlForTag' >" . $tag . "</a>";
-                 $itemNews->content = str_replace($tag, $linkForTag, $itemNews->content);
-                 $itemNews->save();
-             }
-        }
-
-     }
 }

@@ -15,6 +15,6 @@ class TagsNews extends Model
 
     public function new():BelongsTo
     {
-        return $this->belongsTo('news');
+        return $this->belongsTo(News::class,"news_id","id");
     }
 }
