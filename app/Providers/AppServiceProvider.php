@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\News;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 'tagsCount' => Tag::count(),
                 'postsCount' => Post::count(),
                 'usersCount' => User::count(),
+                'newsCount' => News::where('status_display',1)->count(),
                 ]);
         });
         View::composer('layouts.profile', function ($view) {

@@ -13,7 +13,7 @@
                             <a href="{{route('admin.index')}}">{{__('Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item ">
-                            <a href="{{route('admin.post.index')}}">{{__('Posts')}}</a>
+                            <a href="{{route('admin.new.index')}}">{{__('News')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__("Update new")}}</li>
                     </ol>
@@ -31,7 +31,7 @@
                     <div class="mb-2">
                         <label for="title">{{__('Title')}}</label>
                         <input type="text" name="title" class="form-control col-4" id="title" placeholder="Введіть заголовок"
-                               value= {{$itemNews->id}}>
+                               value= {{old('tags')}}>
                     </div>
                     @error('title')
                     <div class="text-danger pb-2">{{ $message }}</div>

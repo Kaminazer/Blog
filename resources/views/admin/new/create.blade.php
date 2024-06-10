@@ -13,9 +13,9 @@
                             <a href="{{route('admin.index')}}">{{__('Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item ">
-                            <a href="{{route('admin.post.index')}}">{{__('Posts')}}</a>
+                            <a href="{{route('admin.new.index')}}">{{__('News')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">{{__("Create post")}}</li>
+                        <li class="breadcrumb-item active">{{__("Create new")}}</li>
                     </ol>
                 </div>
             </div><!-- /.row -->

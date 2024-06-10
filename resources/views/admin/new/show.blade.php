@@ -19,7 +19,7 @@
             </div><!-- /.container-fluid -->
         </div>
         <div class="container">
-            <p class="edica-blog-post-meta mb-5" data-aos="fade-up" data-aos-delay="200">Created : {{$itemNews->created_at/*->format('F d,  Y')*/}}
+            <p class="edica-blog-post-meta mb-5" data-aos="fade-up" data-aos-delay="200">Created : {{$itemNews->created_at->format('F d,  Y')}}
             <section class="blog-post-featured-img text-center" data-aos="fade-up" data-aos-delay="300">
                 <img src="{{asset('storage/' . $itemNews->image)}}" alt="image" class="w-50">
             </section>
