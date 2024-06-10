@@ -3,27 +3,27 @@
 namespace App\Service;
 
 use App\Models\News;
-use App\Models\Post;
 use App\Models\TagsNews;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class TagService
 {
     public function addLinks(array $tags){
         $allNews = News::all('id', 'content')->flatten(1);
         foreach ($tags as $tag) {
+            $instanceTag = TagsNews::where('title', $tag)->first();
             $foundedNews = $allNews->filter( function ($news) use ($tag) {
-                return preg_match("/\b$tag\b/ui",$news->content);
+                return preg_match_all("/\b$tag\b/ui",$news->content,$matches);
             });
-            foreach ($foundedNews as $itemNews) {
-                $urlForTag = route('admin.new.show', ["new" => $itemNews->id]);
-                $itemNews->content = preg_replace(
-                    "/\b$tag\b/ui",
-                    "<a href = '$urlForTag' >$0</a>",
-                    $itemNews->content
-                );
-                $itemNews->save();
+            if(!empty($foundedNews)) {
+                foreach ($foundedNews as $itemNews) {
+                    $urlForTag = route('admin.new.show', ["new" => $instanceTag->new->id]);
+                    $itemNews->content = preg_replace(
+                        "/\b$tag\b/ui",
+                        "<a href = '$urlForTag' >$0</a>",
+                        $itemNews->content
+                    );
+                    $itemNews->save();
+                }
             }
         }
     }
@@ -45,58 +45,38 @@ class TagService
         }
         return $content;
     }
-    public function store($data)
+
+    public function deleteLinks(array $deletedTags)
     {
-        try {
-            DB::beginTransaction();
-            if (isset($data['tags_id'])){
-                $tags_id = $data['tags_id'];
-                unset($data['tags_id']);
+        $allNews = News::all('id', 'content')->flatten(1);
+        foreach ($deletedTags as $tag) {
+            $foundedNews = $allNews->filter(function ($new) use ($tag) {
+             return preg_match_all("/\b$tag\b/ui", $new->content, $matches);
+            });
+            if(!empty($foundedNews)){
+                foreach ($foundedNews as $itemNews) {
+                    $itemNews->content = preg_replace("#<a href = '[^$tag]+#ui","", $itemNews->content);
+                    $itemNews->content = preg_replace("#</a>#","", $itemNews->content);
+                    $itemNews->save();
+                }
             }
-            if(isset($data['preview_image'])){
-                $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
-            }
-            if(isset($data['main_image'])){
-                $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
-            }
-            $post = Post::create($data);
-            if (isset($tags_id)){
-                $post->tags()->attach($tags_id);
-            }
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            abort(500, $e->getMessage());
         }
     }
 
-    public function update($data, Post $post){
-        try {
-            DB::beginTransaction();
-            if (isset($data['tags_id'])){
-                $tags_id = $data['tags_id'];
-                unset($data['tags_id']);
-            }
+    public function deleteTags(array $deletedTags)
+    {
+        foreach ($deletedTags as $tag){
+            TagsNews::where("title", $tag)->first()->delete();
+        }
+    }
 
-            if(isset($data['preview_image'])){
-                $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
-            }
-
-            if(isset($data['main_image'])){
-                $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
-            }
-            if (isset($tags_id)){
-                $post->tags()->sync($tags_id);
-            } else{
-                $post->tags()->detach();
-            }
-            //dd($data);
-            $post->update($data);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            abort(500, $e->getMessage());
+    public function createTag(array $tags, News $new)
+    {
+        foreach ($tags as $tag) {
+            TagsNews::create([
+                'title'=> $tag,
+                'news_id'=>$new->id,
+            ]);
         }
     }
 }
-

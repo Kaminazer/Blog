@@ -28,14 +28,11 @@ class StoreController extends Controller
             }
         }
         if (empty($existingTags)){
-            $service->addLinks($convertedTags);
             $modifiedContent = $service->checkContent($validatedData['content']);
             $validatedData['content'] = $modifiedContent;
             $new = News::create($validatedData);
-            TagsNews::create([
-                'title'=> $tag,
-                'news_id'=>$new->id,
-            ]);
+            $service->createTag($convertedTags, $new);
+            $service->addLinks($convertedTags);
             return redirect()->route('admin.new.index');
         }
         return back()->withErrors(['tags'=>"Don't use these tags, they are exist in other news: ".implode(", ", $existingTags)]);

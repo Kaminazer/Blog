@@ -10,6 +10,7 @@ use \Illuminate\Database\Eloquent\SoftDeletes;
 class TagsNews extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
     protected $table = "tags_news";
 
