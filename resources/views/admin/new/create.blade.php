@@ -13,7 +13,7 @@
                             <a href="{{route('admin.index')}}">{{__('Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item ">
-                            <a href="{{route('admin.new.index')}}">{{__('News')}}</a>
+                            <a href="{{route('new.index')}}">{{__('News')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__("Create new")}}</li>
                     </ol>
@@ -75,9 +75,11 @@
                     <div class="mb-2 col-7">
                         <label>{{__("Display")}}</label>
                         <div>
-                            <input type="radio" id="option1" name="status_display" value= "1">
+                            <input type="radio" id="option1" name="status_display"
+                                   value= "1" {{ old('status_display') == 1 ? 'checked' : '' }}>
                             <label for="option1">Yes</label>
-                            <input type="radio" id="option2" name="status_display" value= "0">
+                            <input type="radio" id="option2" name="status_display"
+                                   value= "0" {{ old('status_display') == 0 ? 'checked' : '' }}>
                             <label for="option2">No</label>
                         </div>
                     </div>

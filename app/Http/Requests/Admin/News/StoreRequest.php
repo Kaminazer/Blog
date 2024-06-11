@@ -21,12 +21,18 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
+            return [
+                'title' => ['required', 'string', 'max:255', 'unique:news,title'],
+                'content' => ['required', 'string'],
+                'image' => ['required', 'mimes:jpg,bmp,png,jpeg,webp,svg', 'max:2048'],
+                'tags' => ['required', 'string', 'regex:/^[\w+,]+$/u'],
+                'status_display' => ['required']
+            ];
+    }
+    public function messages()
+    {
         return [
-            'title' => ['required', 'string', 'max:255', 'unique:news,title'],
-            'content' => ['required', 'string'],
-            'image' => ['required', 'mimes:jpg,bmp,png,jpeg,webp,svg', 'max:2048'],
-            'tags' => ['nullable'],
-            'status_display' => ['required']
+            'tags.regex' => 'Теги повинні бути введені через кому без пробілів',
         ];
     }
 }

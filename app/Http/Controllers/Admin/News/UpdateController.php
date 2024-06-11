@@ -32,6 +32,6 @@ class UpdateController extends Controller
         }
         $validatedData['content'] = $service->checkContent($validatedData['content']);
         $new->update($validatedData);
-        return redirect()->route('admin.new.index');
+        return redirect()->route('new.show', $new->id);
     }
 }

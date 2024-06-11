@@ -33,7 +33,7 @@ class StoreController extends Controller
             $new = News::create($validatedData);
             $service->createTag($convertedTags, $new);
             $service->addLinks($convertedTags);
-            return redirect()->route('admin.new.index');
+            return redirect()->route('new.index');
         }
         return back()->withErrors(['tags'=>"Don't use these tags, they are exist in other news: ".implode(", ", $existingTags)]);
     }

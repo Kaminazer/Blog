@@ -50,7 +50,7 @@
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route('admin.new.index')}}" class="nav-link">{{__("News")}}</a>
+                    <a href="{{route('new.index')}}" class="nav-link">{{__("News")}}</a>
                 </li>
 
             </ul>

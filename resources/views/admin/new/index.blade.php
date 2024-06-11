@@ -3,6 +3,9 @@
     <main class="blog">
         <div class="container">
             <h1 class="edica-page-title" data-aos="fade-up">{{__("News")}}</h1>
+            <div class="mb-3">
+                <a href="{{route('admin.new.create')}}" class="btn-block btn-primary  btn-lg col-3" >{{__('Add new item news')}}</a>
+            </div>
             <section class="featured-posts-section">
                 <div class="row">
                     <div class=" mr-2 row col-md-12">
@@ -11,7 +14,7 @@
                                 <div class="blog-post-thumbnail-wrapper">
                                     <img src="{{asset('storage/'. $itemNews->image)}}" alt="image news">
                                 </div>
-                                <a href="{{route("admin.new.show", $itemNews->id)}}" class="blog-post-permalink">
+                                <a href="{{route("new.show", $itemNews->id)}}" class="blog-post-permalink">
                                     <h6 class="blog-post-title">{{$itemNews->title}}</h6>
                                 </a>
                                  <p>{{$itemNews->created_at->format('d M Y')}}</p>

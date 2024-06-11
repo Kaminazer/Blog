@@ -8,9 +8,9 @@ use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
 {
-    public function __invoke(News $news): RedirectResponse
+    public function __invoke(News $new): RedirectResponse
     {
-        $news->delete();
-        return redirect()->route('admin.news.index');
+        $new->delete();
+        return redirect()->route('new.index');
     }
 }

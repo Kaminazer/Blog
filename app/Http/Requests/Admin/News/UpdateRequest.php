@@ -26,8 +26,14 @@ class UpdateRequest extends FormRequest
             'title' => ['required', 'string', 'max:255', 'unique:news,title'],
             'content' => ['required', 'string'],
             'image' => ['required', 'mimes:jpg,bmp,png,jpeg,webp,svg', 'max:2048'],
-            'tags' => ['nullable'],
+            'tags' => ['required', 'string', 'regex:/^[\w+,]+$/u'],
             'status_display' => ['required']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'tags.regex' => 'Теги повинні бути введені через кому без пробілів',
         ];
     }
 }

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', \App\Http\Controllers\Admin\News\IndexController::class)->name('main.index');
+Route::get('/', \App\Http\Controllers\Admin\News\IndexController::class)->name('new.index');
+Route::get('new/{new}', \App\Http\Controllers\Admin\News\ShowController::class)->name('new.show');
 
 Route::group(['prefix' => 'posts', 'namespace' => 'App\Http\Controllers\Post'], function () {
     Route::get('/', 'IndexController')->name('post.index');
@@ -61,10 +62,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
     });
 
     Route::group(['prefix' => 'new', 'namespace' => 'News', 'as' => 'new.'], function () {
-        Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
         Route::post('store', 'StoreController')->name('store');
-        Route::get('{new}', 'ShowController')->name('show');
         Route::get('{new}/edit', 'EditController')->name('edit');
         Route::patch('{new}', 'UpdateController')->name('update');
         Route::delete('{new}', 'DestroyController')->name('destroy');

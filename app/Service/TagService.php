@@ -16,7 +16,7 @@ class TagService
             });
             if(!empty($foundedNews)) {
                 foreach ($foundedNews as $itemNews) {
-                    $urlForTag = route('admin.new.show', ["new" => $instanceTag->new->id]);
+                    $urlForTag = route('new.show', ["new" => $instanceTag->new->id]);
                     $itemNews->content = preg_replace(
                         "/\b$tag\b/ui",
                         "<a href = '$urlForTag' >$0</a>",
@@ -35,7 +35,7 @@ class TagService
             preg_match_all("/\b$tag->title\b/ui",$content,$matches );
             if(!empty($matches[0])){
                 $idRelatedNews = $tag->new->id;
-                $urlForTag = route('admin.new.show', ["new" => $idRelatedNews]);
+                $urlForTag = route('new.show', ["new" => $idRelatedNews]);
                 $content = preg_replace(
                     "/\b$tag->title\b/ui",
                     "<a href = '$urlForTag' >$0</a>",
