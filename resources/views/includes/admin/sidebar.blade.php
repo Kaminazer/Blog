@@ -24,18 +24,6 @@
             </div>
         </div>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -83,6 +71,15 @@
                         <p>
                             {{__('Tags')}}
                             <span class="badge badge-info right">{{$tagsCount}}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('new.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            {{__('News')}}
+                            <span class="badge badge-info right">{{$newsCount}}</span>
                         </p>
                     </a>
                 </li>

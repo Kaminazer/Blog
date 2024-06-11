@@ -3,17 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-Route::get('/', \App\Http\Controllers\Main\IndexController::class)->name('main.index');
+Route::get('/', \App\Http\Controllers\Admin\News\IndexController::class)->name('new.index');
+Route::get('new/{new}', \App\Http\Controllers\Admin\News\ShowController::class)->name('new.show');
 
 Route::group(['prefix' => 'posts', 'namespace' => 'App\Http\Controllers\Post'], function () {
     Route::get('/', 'IndexController')->name('post.index');
@@ -50,7 +41,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
         Route::patch('{category}', 'UpdateController')->name('update');
         Route::delete('{category}', 'DestroyController')->name('destroy');
     });
-        Route::group(['prefix' => 'tag', 'namespace' => 'Tag', 'as' => 'tag.'], function () {
+    Route::group(['prefix' => 'tag', 'namespace' => 'Tag', 'as' => 'tag.'], function () {
         Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
         Route::post('store', 'StoreController')->name('store');
@@ -70,6 +61,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin', 
         Route::delete('{post}', 'DestroyController')->name('destroy');
     });
 
+    Route::group(['prefix' => 'new', 'namespace' => 'News', 'as' => 'new.'], function () {
+        Route::get('create', 'CreateController')->name('create');
+        Route::post('store', 'StoreController')->name('store');
+        Route::get('{new}/edit', 'EditController')->name('edit');
+        Route::patch('{new}', 'UpdateController')->name('update');
+        Route::delete('{new}', 'DestroyController')->name('destroy');
+    });
+
     Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' => 'user.'], function () {
         Route::get('/', 'IndexController')->name('index');
         Route::get('create', 'CreateController')->name('create');
@@ -85,6 +84,6 @@ Route::group(['prefix' => 'categories', 'namespace' => 'App\Http\Controllers\Cat
     Route::get('/', 'IndexController')->name("categories.index");
     Route::get('{category}/posts', 'Post\IndexController')->name("categories.posts.index");
 });
-Auth::routes(/*['verify' => true]*/);
+Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+
