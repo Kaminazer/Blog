@@ -55,8 +55,7 @@ class TagService
             });
             if(!empty($foundedNews)){
                 foreach ($foundedNews as $itemNews) {
-                    $itemNews->content = preg_replace("#<a href = '[^$tag]+#ui","", $itemNews->content);
-                    $itemNews->content = preg_replace("#</a>#","", $itemNews->content);
+                    $itemNews->content = preg_replace("#<a href = '.+\b$tag</a>#ui",$tag, $itemNews->content);
                     $itemNews->save();
                 }
             }
