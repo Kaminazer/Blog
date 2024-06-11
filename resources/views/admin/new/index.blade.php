@@ -3,9 +3,11 @@
     <main class="blog">
         <div class="container">
             <h1 class="edica-page-title" data-aos="fade-up">{{__("News")}}</h1>
-            <div class="mb-3">
-                <a href="{{route('admin.new.create')}}" class="btn-block btn-primary  btn-lg col-3" >{{__('Add new item news')}}</a>
-            </div>
+            @auth()
+                <div class="mb-3">
+                    <a href="{{route('admin.new.create')}}" class="btn-block btn-primary  btn-lg col-3" >{{__('Add new item news')}}</a>
+                </div>
+            @endauth
             <section class="featured-posts-section">
                 <div class="row">
                     <div class=" mr-2 row col-md-12">
